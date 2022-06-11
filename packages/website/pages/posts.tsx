@@ -1,14 +1,17 @@
 import { gql, useQuery } from '@apollo/client';
 import type { NextPage } from 'next';
-import PostsGrid from './PostsGrid';
+import PostsGrid from '../components/PostsGrid';
+import { Post, User, UserAndPost } from '../shared/types';
 
 const GET_POSTS = gql`
   query GetPosts {
     posts {
       id
       title
+      category
       body
       userId
+      date
     }
   }
 `;
@@ -27,35 +30,19 @@ const Posts: NextPage = () => {
   const { data: dataPosts } = useQuery(GET_POSTS);
   const { data: dataUsers } = useQuery(GET_USER);
 
-  const data = dataPosts?.posts?.map(post => ({
+  const data: UserAndPost[] = dataPosts?.posts?.map((post: Post) => ({
     id: post.id,
     title: post.title,
     body: post.body,
-    authorName: dataUsers?.users?.find(u => u.id === post.userId)?.name,
-    authorEmail: dataUsers?.users?.find(u => u.id === post.userId)?.email,
+    category: post.category,
+    date: new Date(post.date).toLocaleDateString(),
+    authorName: dataUsers?.users?.find((u: User) => u.id === post.userId)?.name,
+    authorEmail: dataUsers?.users?.find((u: User) => u.id === post.userId)
+      ?.email,
+    userId: post.userId,
   }));
 
   return <PostsGrid posts={data} />;
 };
-
-//   return (
-//     <div>
-//       <Head>
-//         <title>Posts | Neulabs fullstack assignment</title>
-//       </Head>
-//       <main>
-//         <h1>Post list</h1>
-//         {data?.map(d => (
-//           <article key={d.id}>
-//             <h1>{d.title}</h1>
-//             <h2>{d.authorName}</h2>
-//             <h2>{d.authorEmail}</h2>
-//             <p>{d.body}</p>
-//           </article>
-//         ))}
-//       </main>
-//     </div>
-//   );
-// };
 
 export default Posts;

@@ -1,12 +1,12 @@
 import PostItem from './PostItem';
-import { Post } from './types';
+import { UserAndPost } from '../shared/types';
 
-const PostsGrid: React.FC<{ posts: Post[] }> = ({ posts }) => {
+const PostsGrid: React.FC<{ posts: UserAndPost[] }> = ({ posts }) => {
   if (!posts || posts.length === 0) {
     return <p>No posts yet</p>;
   }
   return (
-    <div className="feedback-list">
+    <div>
       {posts.map(item => (
         <PostItem key={item.id} item={item} />
       ))}

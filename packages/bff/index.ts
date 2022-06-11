@@ -6,8 +6,10 @@ const typeDefs = gql`
   type Post {
     id: ID
     title: String
+    category: String
     body: String
     userId: ID
+    date: String
   }
 
   type User {
