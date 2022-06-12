@@ -1,5 +1,8 @@
 import PostItem from './PostItem';
 import { UserAndPost } from '../shared/types';
+import React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 const PostsGrid: React.FC<{ posts: UserAndPost[] }> = ({ posts }) => {
   if (!posts || posts.length === 0) {
@@ -7,9 +10,15 @@ const PostsGrid: React.FC<{ posts: UserAndPost[] }> = ({ posts }) => {
   }
   return (
     <div>
-      {posts.map(item => (
-        <PostItem key={item.id} item={item} />
-      ))}
+      <Box>
+        <Grid container>
+          {posts.map(post => (
+            <Grid item xs={4} key={post.id}>
+              <PostItem key={post.id} item={post} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </div>
   );
 };

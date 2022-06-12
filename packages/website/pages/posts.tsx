@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import type { NextPage } from 'next';
+import Head from 'next/head';
 import PostsGrid from '../components/PostsGrid';
 import { Post, User, UserAndPost } from '../shared/types';
 
@@ -42,7 +43,21 @@ const Posts: NextPage = () => {
     userId: post.userId,
   }));
 
-  return <PostsGrid posts={data} />;
+  return (
+    <div>
+      <Head>
+        <title>Posts | Neulabs fullstack assignment</title>
+      </Head>
+      <main
+        style={{
+          marginInline: '20%',
+        }}
+      >
+        <h1 style={{ textAlign: 'center', marginBottom: '5%' }}>Post list</h1>
+        <PostsGrid posts={data} />
+      </main>
+    </div>
+  );
 };
 
 export default Posts;
