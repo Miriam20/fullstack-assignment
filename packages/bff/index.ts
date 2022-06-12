@@ -1,5 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server';
 import posts from './posts';
+import { PostsServices } from './service/postsServices';
 import { UsersAPI } from './usersApi';
 
 const typeDefs = gql`
@@ -10,6 +11,7 @@ const typeDefs = gql`
     body: String
     userId: ID
     date: String
+    border: Boolean
   }
 
   type User {
@@ -24,13 +26,18 @@ const typeDefs = gql`
   }
 `;
 
+const postsServices = new PostsServices();
+
 const dataSources = () => ({
   usersApi: new UsersAPI(),
 });
 
 const resolvers = {
   Query: {
-    posts: () => posts,
+    posts: () => {
+      postsServices.setBorder(posts);
+      return posts;
+    },
     users: (_: any, __: any, { dataSources }: any) =>
       dataSources.usersApi.getUsers(),
   },

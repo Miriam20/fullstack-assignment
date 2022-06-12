@@ -1,25 +1,27 @@
 export type UserAndPost = {
-  id: string;
+  id: number;
   title: string;
   body: string;
   authorName: string;
   authorEmail: string;
   category: string;
   date: string;
-  userId: string;
+  userId: number;
+  border: string;
 };
 
 export type Post = {
-  id: string;
+  id: number;
   title: string;
   body: string;
-  userId: string;
+  userId: number;
   category: string;
   date: string;
+  border?: boolean;
 };
 
 export type User = {
-  id: string;
+  id: number;
   authorName: string;
   authorEmail: string;
 };

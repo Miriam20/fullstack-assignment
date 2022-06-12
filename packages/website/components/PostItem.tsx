@@ -1,10 +1,10 @@
-import { UserAndPost } from '../shared/types';
+import { UserAndPost } from '../../shared/types';
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Avatar, CardActionArea } from '@mui/material';
+import { Avatar } from '@mui/material';
 import styled from '@emotion/styled';
 import CardHeader from '@material-ui/core/CardHeader';
 
@@ -25,7 +25,12 @@ const PostItem: React.FC<{ item: UserAndPost }> = ({ item }) => {
   return (
     <Card
       sx={{ maxWidth: 345 }}
-      style={{ borderRadius: '10%', margin: '25px', height: '400px' }}
+      style={{
+        border: item.border,
+        borderRadius: '10%',
+        margin: '25px',
+        height: '400px',
+      }}
     >
       <CardMedia
         component="img"

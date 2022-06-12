@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import PostsGrid from '../components/PostsGrid';
-import { Post, User, UserAndPost } from '../shared/types';
+import { Post, User, UserAndPost } from '../../shared/types';
 
 const GET_POSTS = gql`
   query GetPosts {
@@ -13,6 +13,7 @@ const GET_POSTS = gql`
       body
       userId
       date
+      border
     }
   }
 `;
@@ -41,6 +42,7 @@ const Posts: NextPage = () => {
     authorEmail: dataUsers?.users?.find((u: User) => u.id === post.userId)
       ?.email,
     userId: post.userId,
+    border: post.border ? '3px solid red' : '',
   }));
 
   return (
