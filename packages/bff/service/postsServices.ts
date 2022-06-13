@@ -1,4 +1,4 @@
-import { Post } from 'packages/shared/types';
+import { Post } from '../types';
 
 export class PostsServices {
   setBorder(posts: Post[]) {

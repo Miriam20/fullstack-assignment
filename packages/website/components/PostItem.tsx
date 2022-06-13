@@ -1,4 +1,3 @@
-import { UserAndPost } from '../../shared/types';
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Avatar } from '@mui/material';
 import styled from '@emotion/styled';
 import CardHeader from '@material-ui/core/CardHeader';
+import { UserAndPost } from './types';
 
 const PostItem: React.FC<{ item: UserAndPost }> = ({ item }) => {
   const AvatarContainer = styled.div`

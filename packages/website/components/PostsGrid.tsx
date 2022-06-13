@@ -1,7 +1,7 @@
 import PostItem from './PostItem';
-import { UserAndPost } from '../../shared/types';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { UserAndPost } from './types';
 
 const PostsGrid: React.FC<{ posts: UserAndPost[] }> = ({ posts }) => {
   if (!posts || posts.length === 0) {
